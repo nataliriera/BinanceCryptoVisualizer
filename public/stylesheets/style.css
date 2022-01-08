@@ -1,5 +1,5 @@
 body {
-  padding: 0px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -11,4 +11,7 @@ h1 {
   color: 15px;
 }
 
+.custom-nav {
+  padding:0px;
+}
 

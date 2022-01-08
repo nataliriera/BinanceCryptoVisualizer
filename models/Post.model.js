@@ -8,12 +8,17 @@ const postSchema = new Schema( {
         required:true
     },
     post:{
-        type:Text,
+        type:String,
         required:true
-    }
+    },
+    images:{
+        type:[String],
+        minlength:1
+    },
+    hashtags:String
 } , {
     timestamps:true
-} )
+})
 
 
 
