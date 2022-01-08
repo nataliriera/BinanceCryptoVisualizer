@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
+
 const userSchema = new Schema(
   {
     
@@ -8,7 +8,6 @@ const userSchema = new Schema(
       type: String,
       unique: true,
       required:[true, "You should set up "]
-      // unique: true -> Ideally, should be unique, but its up to you
     },
 
     password: {
@@ -19,15 +18,15 @@ const userSchema = new Schema(
     email:{
       type: String,
       required: true,
+      unique:true
     },
 
     profile_picture:{
       type: String,
-    //default:"http...."
+      //default:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pikpng.com%2Fpngvi%2FiibRox_user-iconset-no-profile-picture-icon-circle-clipart%2F&psig=AOvVaw2mdXUT5r-4kq0wMKBNLyYV&ust=1641739777970000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNii0rizovUCFQAAAAAdAAAAABAJ"
   }
 },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
       timestamps: true,
   }
 );
