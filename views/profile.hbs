@@ -1,20 +1,30 @@
 
 {{> navbar}}
-<h3> Hola {{user.username}}</h3>
 
-<h4>Your daily Crypto Dose</h4>
+<form action="/create" method="post" enctype="multipart/form-data">
 
-<form>
-    <fieldset class="uk-fieldset">
-        <div class="uk-margin">
-            <textarea class="uk-textarea" rows="5" placeholder="Create Post"></textarea>
+    <legend class="uk-legend">Share your thoughts!</legend>
+    <div class="uk-margin">
+        <div class="uk-form-width-large">
+            <textarea name="post" class="uk-textarea" id="comment-text" type="text" rows="5" placeholder="Write your post here..."></textarea>
         </div>
-    </fieldset>
-    
-    <button type="submit">Post</button>
+    </div>
+
+    <div class="uk-margin">
+        <label class="uk-form-label" for="images">Images</label>
+        <div class="uk-form-width-large">
+            <input class="uk-input" type="file" name="images" multiple />
+        </div>
+    </div>
+
+    <div class="uk-margin">
+        <label class="uk-form-label" for="hashtags">Hashtags</label>
+        <div class="uk-form-width-large">
+            <input class="uk-input" type="text" name="hashtags" placeholder="#BTC #Binance..."/>
+        </div>
+    </div>
+
+
+    <button class="uk-button uk-button-default" type="submit">Publish Post!</button>
+
 </form>
-
-<ul>
-    
-</ul>
-
