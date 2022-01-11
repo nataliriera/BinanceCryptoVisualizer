@@ -28,3 +28,20 @@
     <button class="uk-button uk-button-default" type="submit">Publish Post!</button>
 
 </form>
+
+<div class="container">
+    <h1>Posts</h1>
+    <div class="uk-child-width-1-1 uk-margin-medium-top uk-grid-match" uk-grid>
+        {{#each posts}}
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-media-top">
+                    <img class="uk-align-center" src="{{images}}" alt="{{name}}">
+                </div>
+                <div class="uk-card-body">
+                    <p>{{post}}</p>
+                    <h3 class="uk-card-title">{{hashtags}}</h3>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
