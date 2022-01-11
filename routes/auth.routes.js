@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const Post = require("../models/Post.model");
 const bcryptjs = require("bcryptjs");
+const {isLoggedOut,isLoggedIn} = require("../utils/auth")
 
 // --------------------- Sign Up ---------------------
 router.get("/signup", (req, res, next) =>{
@@ -47,7 +48,7 @@ router.post("/signup", async(req,res,next)=>{
 })
 
 // --------------------- Sign In ---------------------
-router.get("/signin", (req, res, next) =>{
+router.get("/signin", isLoggedOut, (req, res, next) =>{
     res.render("sign/signin");
 })
 
@@ -83,7 +84,7 @@ router.post("/signin", async(req, res, next) => {
 })
 
 // --------------------- Profile ---------------------
-router.get("/profile", (req, res, next) => {
+router.get("/profile", isLoggedIn, (req, res, next) => {
     const {user} = req.session
 
     Post.find({_author: user})
