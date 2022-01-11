@@ -1,4 +1,40 @@
-<h1>{{title}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
-<a href="/signup">Sign Up!</a>
-<a href="/signin">Sign In!</a>
+
+
+<div class="home">
+{{!-- <h1>{{title}} 🚀</h1> --}}
+<h1>Welcome to Binance Cryptocurrency Visualizer!</h1>
+
+
+{{!-- designed buttons --}}
+<div class="sign">
+<button class="uk-button uk-button-default uk-button-small">
+<a href="/signup">Sign Up!</a></button>
+
+<button class="uk-button uk-button-primary uk-button-small">
+<a href="/signin">Sign In!</a></button>
+</div>
+</div>
+
+
+{{!-- sliders  --}}
+<div uk-slideshow="animation: push" class="images">
+
+    <div id="slider" class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+
+        <ul class="uk-slideshow-items">
+            <li>
+                <img src="images/btc.jpg" alt="" uk-cover>
+            </li>
+            <li>
+                <img src="images/btc.jpg" alt="" uk-cover>
+            </li>
+            <li>
+                <img src="images/btc.jpg" alt="" uk-cover>
+            </li>
+        </ul>
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+    </div>
+    <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
+    </div>
+</div>
