@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
+const Post = require("../models/Post.model");
 const bcryptjs = require("bcryptjs");
 
 // --------------------- Sign Up ---------------------
@@ -84,7 +85,13 @@ router.post("/signin", async(req, res, next) => {
 // --------------------- Profile ---------------------
 router.get("/profile", (req, res, next) => {
     const {user} = req.session
-    res.render("profile",{user});
+
+    Post.find({_author: user})
+        .then(thePosts => {
+            res.render("profile",{user, posts:thePosts})
+            console.log(thePosts)
+        })
+        .catch()
     })
 
 router.get("/logout",  (req, res, next) => {
