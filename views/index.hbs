@@ -1,40 +1,57 @@
 
 
-<div class="home">
-{{!-- <h1>{{title}} 🚀</h1> --}}
-<h1>Welcome to Binance Cryptocurrency Visualizer!</h1>
-
-
 {{!-- designed buttons --}}
-<div class="sign">
-<button class="uk-button uk-button-default uk-button-small">
-<a href="/signup">Sign Up!</a></button>
+    <div class="sign">
+        <a class="btnlink" href="/signup">Sign Up!</a>
+        <a class="btnlink" href="/signin">Sign In!</a>
+    </div>
 
-<button class="uk-button uk-button-primary uk-button-small">
-<a href="/signin">Sign In!</a></button>
+
+
+{{!-- background video  --}}
+    <video id='myVideo' autoplay loop muted>
+        <source src="https://static.videezy.com/system/resources/previews/000/045/468/original/increase_stock.mp4" type="video/mp4">
+    </video>
+
+
+{{!-- MIDDLE --}}
+<div id="homepage-bg-bg">
+        <div id='homepage-bg'>
+            <h1>Welcome to Binance Cryptocurrency Visualizer!</h1>
+            <p>In this crypto viusualizer we will be creating a community of like minded individuals that are interested in all things crypto related! <br> On this site you will be able to <br> 
+            <ul id='homepage-bg-list'>
+                <li>Create a personal account</li>
+                <li>View other user accounts</li>
+                <li>Watch live crypto prices</li>
+            </ul> <br> Want to start getting living crypto prices now? Click below! </p>
+            <a class="btnlink">Get Started</a>
+        </div>
+    </div>
 </div>
-</div>
 
 
-{{!-- sliders  --}}
-<div uk-slideshow="animation: push" class="images">
-
-    <div id="slider" class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
-
-        <ul class="uk-slideshow-items">
+{{!-- FOOTER --}}
+<footer id='footer'class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
             <li>
-                <img src="images/btc.jpg" alt="" uk-cover>
+                <a >
+                    <span class="uk-icon uk-margin-small-right" ></span>
+                    Creators:
+                </a>
             </li>
             <li>
-                <img src="images/btc.jpg" alt="" uk-cover>
+                <a class='btnlink' href="https://github.com/nataliriera">
+                    <span class="uk-icon uk-margin-small-right" ></span>
+                    Natali Riera<br> Web Developer
+                </a>
             </li>
             <li>
-                <img src="images/btc.jpg" alt="" uk-cover>
+                <a class="btnlink"href="https://github.com/santiagoCortina">
+                    <span class="uk-icon uk-margin-small-right" ></span>
+                    Santiago Cortina<br>Web Developer
+                </a>
             </li>
         </ul>
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
     </div>
-    <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
-    </div>
-</div>
+</footer>
