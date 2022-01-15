@@ -2,7 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const Post = require("../models/Post.model");
 const bcryptjs = require("bcryptjs");
-const {isLoggedOut,isLoggedIn} = require("../utils/auth")
+const {isLoggedOut,isLoggedIn} = require("../utils/auth");
+const mongoose = require('mongoose');
 
 // --------------------- Sign Up ---------------------
 router.get("/signup", (req, res, next) =>{
@@ -36,9 +37,9 @@ router.post("/signup", async(req,res,next)=>{
     }
     catch(error){
         if (error instanceof mongoose.Error.ValidationError) {
-            res.status(500).render("/signup", { errorMessage: error.message });
+            res.status(500).render("sign/signup", { errorMessage: error.message });
         } else if (error.code === 11000) {
-            res.status(500).render("/signup", {
+            res.status(500).render("sign/signup", {
                 errorMessage: "Email/Username already exist"
             });
         } else {
@@ -48,7 +49,7 @@ router.post("/signup", async(req,res,next)=>{
 })
 
 // --------------------- Sign In ---------------------
-router.get("/signin", isLoggedIn, (req, res, next) =>{
+router.get("/signin", isLoggedOut, (req, res, next) =>{
     res.render("sign/signin");
 })
 
@@ -56,23 +57,22 @@ router.post("/signin", async(req, res, next) => {
     try{
         const {email, password, ... rest} = req.body;
         if(!email || !password){
-            res.render("/signin",{errorMessage:"Please make sure to fill all fields correctly"})
+            res.render("sign/signin",{errorMessage:"Please make sure to fill all fields correctly"})
             return
         }
 
         const user = await User.findOne({email})
         console.log(user)
         if(!user){
-            res.render("/signin",{errorMessage:"Email and/or Password are incorrect"})
+            res.render("sign/signin",{errorMessage:"Email and/or Password are incorrect"})
             return
         }
 
         if(bcryptjs.compareSync(password,user.password)){
             req.session.user = user 
-            console.log("req.ses",req.session) // ------------------------ BORRAR
             res.redirect("/profile")
         }else{
-            res.render("/signin",{errorMessage:"Email and/or Password are incorrect"})
+            res.render("sign/signin",{errorMessage:"Email and/or Password are incorrect"})
             return
         }
 
