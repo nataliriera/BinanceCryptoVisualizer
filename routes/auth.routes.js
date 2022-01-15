@@ -4,6 +4,7 @@ const Post = require("../models/Post.model");
 const bcryptjs = require("bcryptjs");
 const {isLoggedOut,isLoggedIn} = require("../utils/auth");
 const mongoose = require('mongoose');
+const uploader = require('../helpers/multer');
 
 // --------------------- Sign Up ---------------------
 router.get("/signup", (req, res, next) =>{
@@ -92,7 +93,9 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
             res.render("profile",{user, posts:thePosts})
             console.log(thePosts)
         })
-        .catch()
+        .catch(error =>{
+            next(error)
+        })
     })
 
 router.get("/logout",  (req, res, next) => {
@@ -100,4 +103,25 @@ router.get("/logout",  (req, res, next) => {
     res.redirect("/")
     });
 
+router.post("/profile", uploader.single('profile_picture'), (req, res, next) =>{
+    const {user} = req.session
+    let data = {...req.body}
+    if(req.file){
+        data.profile_picture = req.file.path
+    }
+    User.findByIdAndUpdate(user._id, data, {
+        new:true
+    })
+    .then(thePosts => {
+        res.redirect("/profile")
+    })
+    .catch(error =>{
+        next(error)
+    })
+})
+
+    // profile settings
+    router.get("/profilesettings", (req, res, next) =>{
+        res.render("profilesettings");
+    })
 module.exports = router;

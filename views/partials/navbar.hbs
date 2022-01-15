@@ -20,12 +20,23 @@
         </div>
 
         <div class="uk-navbar-item"></div>
-            <div><span> Hola {{user.username}}</span></div>
         </div>
+{{!-- ///subnav --}}
+<ul class="uk-subnav uk-subnav-pill" uk-margin>
+    <li>
+            <div><span uk-icon="icon: triangle-down"> Hola {{user.username}}</span></div>
+        <div uk-dropdown="mode: click">
+            <ul class="uk-nav uk-dropdown-nav">
+                <li><a href="/">Home</a></li>
+                <li class="uk-nav-header">Account</li>
+                <li><a href="/profilesettings">Profile Settings</a></li>
+                <li class="uk-nav-divider"></li>
+                <li><a href="/logout">Log Out</a></li>
+            </ul>
+        </div>
+    </li>
+</ul>
 
-        <div class="uk-navbar-item">
-            <div> <a href="/logout">Log Out</a></div>
-        </div>
 
     </div>
 </nav>
