@@ -34,6 +34,27 @@ h1 {
   
 }
 
+.signin{
+  width: 280;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signin h3{
+  float: left;
+  font-size: 40px;
+  border-bottom: 6px solid #00b7ff;
+  margin-bottom: 50px;
+  padding: 13px 0;
+}
+
+
 #sign-up-button a{
   text-decoration: none;
   color:#00b7ff;
@@ -165,3 +186,4 @@ background-color: #333333 ;
   width: 1em; /* Also needed for space (tweak if needed) */
   margin-left: -1em; /* Also needed for space (tweak if needed) */
 }
+

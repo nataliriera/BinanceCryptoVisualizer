@@ -1,22 +1,24 @@
+<div class="signin">
 <h3>Sign In</h3>
 
 <form action="/signin" method="POST">
         <div class="uk-margin">
-        <div class="uk-inline">
+        <div class="uk-inline" class="textbox">
             <span class="uk-form-icon" uk-icon="icon: mail"></span>
             <input class="uk-input" name="email" type="text" placeholder="Example@email.com">
         </div>
     </div>
 
-    <div class="uk-margin">
+    <div class="uk-margin" class="textbox">
         <div class="uk-inline">
             <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
             <input class="uk-input" name="password" type="password" placeholder="Password">
         </div>
     </div>
-    <button class="uk-button uk-button-default" type="submit">Sign In</button>
+    <a class="btnlink"class="signin-box" class="uk-button uk-button-default" type="submit">Sign In</a>
 
 </form>
 {{#if errorMessage}}
     <p>{{errorMessage}}</p>
 {{/if}}
+</div>
