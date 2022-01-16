@@ -16,3 +16,22 @@
     </li>
 
 </ul>
+
+<canvas id="canvasElementID" width="800" height="600"></canvas>
+
+<script src="/js/pingpoliCandlestickChart.js">
+</script>
+<script>
+    var _candlestickStream;
+
+    const getData = async () =>{
+        try{
+            const resp = await axios.get(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d`)
+            let json = resp.data ;
+            console.log("respuesta ok", json.length)
+        } catch(err){
+            console.log("respuesta fallida", err)
+        } 
+    }
+    getData()
+</script>
