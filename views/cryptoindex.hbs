@@ -4,15 +4,62 @@
 
 <ul>
     <li>
-        <a href="/cryptos?coin=BTCUSDT"> BTC </a>
+        <a id="BTC-pair" href="/cryptos?coin=BTCUSDT"> BTC </a>
     </li>
 
     <li>
-        <a href="/cryptos?coin=ETHUSDT"> ETH </a>
+        <a id="ETH-pair" href="#"> ETH </a>
     </li>
 
     <li>
-        <a href="/cryptos?coin=XRPUSDT"> XRP </a>
+        <a id="ADA-pair" href="#"> ADA </a>
     </li>
 
 </ul>
+
+<h3 id="pair"></h3>
+<canvas id="canvasElementID" width="800" height="600"></canvas>
+
+<script src="/js/pingpoliCandlestickChart.js"></script>
+<script type = "text/javascript">
+
+    const btc = document.getElementById("BTC-pair");
+    const ada = document.getElementById("ADA-pair");
+    const eth = document.getElementById("ETH-pair");
+
+    function getGraph(pair){
+        var _candlestickStream;
+        const getData = async () =>{
+            try{
+                document.getElementById('pair').innerHTML = pair + ' - 1 day graph'
+                const resp = await axios.get(`https://api.binance.com/api/v3/klines?symbol=${pair}&interval=1d`)
+                let json = resp.data ;
+                candlestickChart = new pingpoliCandlestickChart( "canvasElementID" );
+                for ( var i = 0 ; i < json.length ; ++i )
+                {
+                    candlestickChart.addCandlestick( new pingpoliCandlestick( json[i][0] , json[i][1] , json[i][4] , json[i][2] , json[i][3] ) );
+                }
+                candlestickChart.addTechnicalIndicator( new MovingAverage( 5 , "#ffff00" , 2 ) );
+                candlestickChart.draw();
+                console.log("respuesta ok", json.length)
+            } catch(err){
+                console.log("respuesta fallida", err)
+            } 
+        }
+        getData()
+    }
+    
+    btc.addEventListener("click", () => {
+        getGraph('BTCUSDT')
+    });
+
+    ada.addEventListener("click", () => {
+        getGraph('ADAUSDT')
+    });
+
+    eth.addEventListener("click", () => {
+        getGraph('ETHUSDT')
+    });
+
+
+</script>
