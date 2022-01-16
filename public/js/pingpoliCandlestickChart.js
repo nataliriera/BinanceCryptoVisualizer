@@ -13,6 +13,14 @@ function pingpoliCandlestick( timestamp , open , close , high , low )
     this.low = parseFloat(low);
 }
 
+pingpoliCandlestick.prototype.update = function( open , close , high , low )
+{
+    this.open = parseFloat(open);
+    this.close = parseFloat(close);
+    this.high = parseFloat(high);
+    this.low = parseFloat(low);
+}
+
 
 
 function pingpoliCandlestickChart( canvasElementID )
@@ -27,6 +35,10 @@ function pingpoliCandlestickChart( canvasElementID )
     } );
     this.canvas.addEventListener( "mouseout" , ( e ) => {
         this.mouseOut( e );
+    } );
+    this.canvas.addEventListener( "wheel" , ( e) => {
+        this.scroll( e );
+        e.preventDefault();
     } );
 
     this.canvas.style.backgroundColor = "#252525";
@@ -68,7 +80,20 @@ function pingpoliCandlestickChart( canvasElementID )
     this.yMouseHover = 0;
     this.hoveredCandlestickID = 0;
 
+    // when zooming, just start at a later candlestick in the array
+    this.zoomStartID = 0;
+
     this.candlesticks = [];
+
+    this.technicalIndicators = [];
+}
+
+
+
+pingpoliCandlestickChart.prototype.clear = function()
+{
+    this.candlesticks = [];
+    this.draw();
 }
 
 
@@ -76,6 +101,24 @@ function pingpoliCandlestickChart( canvasElementID )
 pingpoliCandlestickChart.prototype.addCandlestick = function( candlestick )
 {
     this.candlesticks.push( candlestick );
+    for ( var i = 0 ; i < this.technicalIndicators.length ; ++i )
+    {
+        this.technicalIndicators[i].onAddCandlestick( this , this.candlesticks.length-1 );
+    }
+}
+
+
+
+pingpoliCandlestickChart.prototype.updateCandlestick = function( candlestickID , open , close , high , low )
+{
+    if ( candlestickID >= 0 && candlestickID < this.candlesticks.length )
+    {
+        this.candlesticks[candlestickID].update( open , close , high , low );
+        for ( var i = 0 ; i < this.technicalIndicators.length ; ++i )
+        {
+            this.technicalIndicators[i].onUpdateCandlestick( this , candlestickID );
+        }
+    }
 }
 
 
@@ -117,6 +160,23 @@ pingpoliCandlestickChart.prototype.mouseOut = function( e )
 
 
 
+pingpoliCandlestickChart.prototype.scroll = function( e )
+{
+    if ( e.deltaY < 0 )
+    {
+        this.zoomStartID += 10;
+        if ( this.zoomStartID > this.candlesticks.length-50 ) this.zoomStartID = this.candlesticks.length-50;
+    }
+    else 
+    {
+        this.zoomStartID -= 10;
+        if ( this.zoomStartID < 0 ) this.zoomStartID = 0;
+    }
+    this.draw();
+}
+
+
+
 pingpoliCandlestickChart.prototype.draw = function()
 {
 	// clear background
@@ -127,11 +187,11 @@ pingpoliCandlestickChart.prototype.draw = function()
 
     this.drawGrid();
 
-    this.candleWidth = this.xPixelRange/this.candlesticks.length;
+    this.candleWidth = this.xPixelRange/(this.candlesticks.length-this.zoomStartID);
     this.candleWidth--;
     if ( this.candleWidth%2 == 0 ) this.candleWidth--;
 
-    for ( var i = 0 ; i < this.candlesticks.length ; ++i )
+    for ( var i = this.zoomStartID ; i < this.candlesticks.length ; ++i )
     {
         var color = ( this.candlesticks[i].close > this.candlesticks[i].open ) ? this.greenColor : this.redColor;
 
@@ -146,6 +206,12 @@ pingpoliCandlestickChart.prototype.draw = function()
 
         // draw the candle
         this.fillRect( this.xToPixelCoords( this.candlesticks[i].timestamp )-Math.floor( this.candleWidth/2 ) , this.yToPixelCoords( this.candlesticks[i].open ) , this.candleWidth , this.yToPixelCoords( this.candlesticks[i].close ) - this.yToPixelCoords( this.candlesticks[i].open ) , color );
+    }
+
+    // draw technical indicators
+    for ( var i = 0 ; i < this.technicalIndicators.length ; ++i )
+    {
+        this.technicalIndicators[i].draw( this );
     }
 
     // draw mouse hover
@@ -175,18 +241,18 @@ pingpoliCandlestickChart.prototype.draw = function()
         var yPos = this.mousePosition.y-95;
         if ( yPos < 0 ) yPos = this.mousePosition.y+15;
 
-        this.fillRect( this.mousePosition.x+15 , yPos , 100 , 80 , this.mouseHoverBackgroundColor );
+        this.fillRect( this.mousePosition.x+15 , yPos , 130 , 80 , this.mouseHoverBackgroundColor );
         var color = ( this.candlesticks[this.hoveredCandlestickID].close > this.candlesticks[this.hoveredCandlestickID].open ) ? this.greenColor : this.redColor;
         this.fillRect( this.mousePosition.x+15 , yPos , 10 , 80 , color );
         this.context.lineWidth = 2;
-        this.drawRect( this.mousePosition.x+15 , yPos , 100 , 80 , color );
+        this.drawRect( this.mousePosition.x+15 , yPos , 130 , 80 , color );
         this.context.lineWidth = 1;
 
         this.context.fillStyle = this.mouseHoverTextColor;
-        this.context.fillText( "O: "+this.candlesticks[this.hoveredCandlestickID].open , this.mousePosition.x+30 , yPos+15 );
-        this.context.fillText( "C: "+this.candlesticks[this.hoveredCandlestickID].close , this.mousePosition.x+30 , yPos+35 );
-        this.context.fillText( "H: "+this.candlesticks[this.hoveredCandlestickID].high , this.mousePosition.x+30 , yPos+55 );
-        this.context.fillText( "L: "+this.candlesticks[this.hoveredCandlestickID].low , this.mousePosition.x+30 , yPos+75 );
+        this.context.fillText( "Apertura: "+this.candlesticks[this.hoveredCandlestickID].open , this.mousePosition.x+30 , yPos+15 );
+        this.context.fillText( "Cierre: "+this.candlesticks[this.hoveredCandlestickID].close , this.mousePosition.x+30 , yPos+35 );
+        this.context.fillText( "Max: "+this.candlesticks[this.hoveredCandlestickID].high , this.mousePosition.x+30 , yPos+55 );
+        this.context.fillText( "Min: "+this.candlesticks[this.hoveredCandlestickID].low , this.mousePosition.x+30 , yPos+75 );
     }
 }
 
@@ -260,9 +326,9 @@ pingpoliCandlestickChart.prototype.drawGrid = function()
 
 pingpoliCandlestickChart.prototype.calculateYRange = function()
 {
-    for ( var i = 0 ; i < this.candlesticks.length ; ++i )
+    for ( var i = this.zoomStartID ; i < this.candlesticks.length ; ++i )
     {
-        if ( i == 0 )
+        if ( i == this.zoomStartID )
         {
             this.yStart = this.candlesticks[i].low;
             this.yEnd = this.candlesticks[i].high;
@@ -286,7 +352,7 @@ pingpoliCandlestickChart.prototype.calculateYRange = function()
 
 pingpoliCandlestickChart.prototype.calculateXRange = function()
 {
-    this.xStart = this.candlesticks[0].timestamp;
+    this.xStart = this.candlesticks[this.zoomStartID].timestamp;
     this.xEnd = this.candlesticks[this.candlesticks.length-1].timestamp;
     this.xRange = this.xEnd - this.xStart;
 }
@@ -375,4 +441,86 @@ pingpoliCandlestickChart.prototype.roundPriceValue = function( value )
     if ( value > 0.00001 ) return Math.round( value*100000 )/100000;
     if ( value > 0.0000001 ) return Math.round( value*10000000 )/10000000;
     else return Math.round( value*1000000000 )/1000000000;
+}
+
+
+
+pingpoliCandlestickChart.prototype.addTechnicalIndicator = function( indicator )
+{
+    indicator.onInit( this );
+    this.technicalIndicators.push( indicator );
+}
+
+
+
+function MovingAverage( samples , color , lineWidth )
+{
+    this.samples = samples;
+    this.color = color;
+    this.lineWidth = lineWidth;
+    this.data = [];
+}
+
+
+
+MovingAverage.prototype.onInit = function( candlestickChart )
+{
+    for ( var i = 0 ; i < candlestickChart.candlesticks.length ; ++i )
+    {
+        // average the number of samples
+        var avg = 0;
+        var counter = 0;
+        for ( var j = i ; j > i-this.samples && j >= 0 ; --j )
+        {
+            avg += candlestickChart.candlesticks[j].close;
+            ++counter;
+        }
+        avg /= counter;
+        this.data.push( avg );
+    }
+}
+
+
+
+MovingAverage.prototype.onAddCandlestick = function( candlestickChart , candlestickID )
+{
+    // average the number of samples
+    var avg = 0;
+    var counter = 0;
+    for ( var i = candlestickID ; i > candlestickID-this.samples && i >= 0 ; --i )
+    {
+        avg += candlestickChart.candlesticks[i].close;
+        ++counter;
+    }
+    avg /= counter;
+    this.data.push( avg );
+}
+
+
+
+MovingAverage.prototype.onUpdateCandlestick = function( candlestickChart , candlestickID )
+{
+    // average the number of samples
+    var avg = 0;
+    var counter = 0;
+    for ( var i = candlestickID ; i > candlestickID-this.samples && i >= 0 ; --i )
+    {
+        avg += candlestickChart.candlesticks[i].close;
+        ++counter;
+    }
+    avg /= counter;
+    this.data[candlestickID] = avg;
+}
+
+
+
+MovingAverage.prototype.draw = function( candlestickChart )
+{
+    var oldLineWidth = candlestickChart.context.lineWidth;
+    candlestickChart.context.lineWidth = this.lineWidth;
+    for ( var i = candlestickChart.zoomStartID ; i < this.data.length-1 ; ++i )
+    {
+        candlestickChart.drawLine( candlestickChart.xToPixelCoords( candlestickChart.candlesticks[i].timestamp ) , candlestickChart.yToPixelCoords( this.data[i] ) , candlestickChart.xToPixelCoords( candlestickChart.candlesticks[i+1].timestamp ) , candlestickChart.yToPixelCoords( this.data[i+1] ) , this.color );
+    }
+    candlestickChart.context.lineWidth = oldLineWidth;
 }
