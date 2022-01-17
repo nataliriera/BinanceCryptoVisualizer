@@ -1,42 +1,34 @@
-<nav class="uk-navbar-container uk-margin" uk-navbar>
-    <div class="uk-navbar-left">
 
-        <a class="uk-navbar-item uk-logo" href="/">BCV</a>
-
-        <ul class="uk-navbar-nav">
-            <li>
-                <a href="/cryptos">
-                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-                    Your daily Crypto Dose
-                </a>
-            </li>
-        </ul>
-
-        <div class="uk-navbar-item">
-            <form action="javascript:void(0)">
-                <input class="uk-input uk-form-width-large" type="text" placeholder="Crypto/User/...">
-                <button class="uk-button uk-button-default">Search</button>
-            </form>
-        </div>
-
-        <div class="uk-navbar-item"></div>
-        </div>
-{{!-- ///subnav --}}
-<ul class="uk-subnav uk-subnav-pill" uk-margin>
-    <li>
-            <div><span uk-icon="icon: triangle-down"> Hola {{user.username}}</span></div>
-        <div uk-dropdown="mode: click">
-            <ul class="uk-nav uk-dropdown-nav">
-                <li><a href="/">Home</a></li>
-                <li class="uk-nav-header">Account</li>
-                <li><a href="/profilesettings">Profile Settings</a></li>
-                <li class="uk-nav-divider"></li>
-                <li><a href="/logout">Log Out</a></li>
-            </ul>
-        </div>
-    </li>
-</ul>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+  
+    <a class="btnlink" href="/">BCV</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/cryptos">CRYPTO CHART</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            HELLO {{user.username}}!
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/profilesettings">Profile Settings</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/logout">Log Out </a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Users / Crypto" aria-label="Search">
+        <button class="search"type="submit">SEARCH</button>
+      </form>
+                  <a class="btnlink" href="/signin">Sign In!</a>
 
     </div>
+  </div>
 </nav>

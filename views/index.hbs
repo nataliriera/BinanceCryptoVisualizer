@@ -1,57 +1,74 @@
 
-
+{{> navbar}}
 {{!-- designed buttons --}}
-    <div class="sign">
-        <a class="btnlink" href="/signup">Sign Up!</a>
-        <a class="btnlink" href="/signin">Sign In!</a>
-    </div>
-
 
 
 {{!-- background video  --}}
     <video id='myVideo' autoplay loop muted>
-        <source src="https://static.videezy.com/system/resources/previews/000/045/468/original/increase_stock.mp4" type="video/mp4">
+        <source src="https://static.videezy.com/system/resources/previews/000/055/918/original/4K-240.mp4" type="video/mp4">
     </video>
 
 
 {{!-- MIDDLE --}}
-<div id="homepage-bg-bg">
-        <div id='homepage-bg'>
-            <h1>Welcome to Binance Cryptocurrency Visualizer!</h1>
-            <p>In this crypto viusualizer we will be creating a community of like minded individuals that are interested in all things crypto related! <br> On this site you will be able to <br> 
-            <ul id='homepage-bg-list'>
-                <li>Create a personal account</li>
-                <li>View other user accounts</li>
-                <li>Watch live crypto prices</li>
-            </ul> <br> Want to start getting living crypto prices now? Click below! </p>
-            <a class="btnlink">Get Started</a>
-        </div>
+
+    <div id='welcome'>
+        <h1>Welcome to Binance Cryptocurrency Visualizer</h1>
+        <h4>Bringing Crypto Enthusiasts Together</h4>
     </div>
+
+<hr id='home-divider'>
+
+
+<div id='card-stack' >
+    <div class="card bg-dark text-muted">
+        <img src="https://images.unsplash.com/photo-1568952433726-3896e3881c65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Network</h5>
+            <p class="card-text">Connect wih other individuals interested in Cryptocurrency. You can create a profile, add friends and comment on each other posts. <br> Your network is your networth!</p>
+        </div>
+            <a class='btnlink' href="/profile">Profile</a>
+    </div>
+        <div class="card bg-dark text-muted">
+        <img src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YmluYW5jZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Crypto Chart</h5>
+            <p class="card-text">Stay up to date with daily market trends with our live crypto currency price chart.</p>
+        </div>
+        <a class='btnlink' href="/cryptos">Crypto Chart</a>
 </div>
 
+    <div class="card bg-dark text-muted">
+        <img src="https://images.unsplash.com/photo-1625207897487-af5f478c1d7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YmluYW5jZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Learn More </h5>
+            <p class="card-text">Not sure where to start? <br> One of the market leaders in crypto wallets and cyptocurrency exchange is Binance!  <br> If you need an account click below !</p>
+    </div>
+            <a class='btnlink' href="https://www.binance.us/en/home">Binance</a>
+
+        </div>
+</div>
+
+<hr id='home-divider'>
+
+
+
+<div id='welcome'>
+        <h2>What Are You Waiting For?</h2>
+            <h5>If you are ready to join, click below and become a part of a a network of crypto experts.</h5>
+                <a class='btnlink' href="/signup">Sign Up</a>
+
+</div>
+
+<hr id='home-divider'>
 
 {{!-- FOOTER --}}
-<footer id='footer'class="uk-navbar-container" uk-navbar>
-    <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav">
-            <li>
-                <a >
-                    <span class="uk-icon uk-margin-small-right" ></span>
-                    Creators:
-                </a>
-            </li>
-            <li>
-                <a class='btnlink' href="https://github.com/nataliriera">
-                    <span class="uk-icon uk-margin-small-right" ></span>
-                    Natali Riera<br> Web Developer
-                </a>
-            </li>
-            <li>
-                <a class="btnlink"href="https://github.com/santiagoCortina">
-                    <span class="uk-icon uk-margin-small-right" ></span>
-                    Santiago Cortina<br>Web Developer
-                </a>
-            </li>
-        </ul>
-    </div>
+<footer id='footer' class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="btnlink" aria-current="page" href="https://github.com/nataliriera">Natali Riera - WEB DEVELOPER 👩‍💻</a>
+        </li>
+        <li class="nav-item">
+        <a class="btnlink" href="https://github.com/santiagoCortina">Santiago Cortina - WEB DEVELOPER 👨‍💻</a>
+        </li>
+    </ul>
 </footer>

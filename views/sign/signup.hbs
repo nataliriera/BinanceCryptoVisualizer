@@ -1,31 +1,32 @@
+
+<video id='myVideo' autoplay loop muted>
+    <source src="https://static.videezy.com/system/resources/previews/000/038/080/original/abstract_line1.mp4" type="video/mp4">
+</video>
+
+<div class="signin">
 <h3>Signup</h3>
 
 
-<form action="/signup" method="POST">
-
-    <div class="uk-margin">
-        <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <input class="uk-input" name="username" type="text" placeholder="Username">
-        </div>
+<form>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input name="username" type="text" placeholder="Username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Email</label>
+        <input name="email" type="text" placeholder="Example@email.com" class="form-control" id="exampleInputPassword1">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 
-    <div class="uk-margin">
-        <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: mail"></span>
-            <input class="uk-input" name="email" type="text" placeholder="Example@email.com">
-        </div>
     </div>
-
-    <div class="uk-margin">
-        <div class="uk-inline">
-            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-            <input class="uk-input" name="password" type="password" placeholder="Password">
-        </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input name="password" type="password" placeholder="Password" class="form-control" id="exampleInputPassword1">
     </div>
-    <button class="uk-button uk-button-default" type="submit">Submit</button>
+        <button  type="submit" class="btn btn-primary">Sign Up</button>
 </form>
 
 {{#if errorMessage}}
     <p>{{errorMessage}}</p>
 {{/if}}
+
+</div>

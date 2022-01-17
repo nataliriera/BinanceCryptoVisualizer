@@ -14,18 +14,27 @@ a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
-}
 
 .custom-nav {
   padding:0px;
 }
 
-.images{
-  width: 75%;
-  height: 100vh;
+
+/* welcome */
+
+#welcome{
+  width: 100%;
+  margin:3rem;
+  color: #ecebeb;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+
+/* Sign in  */
 
 .sign{
   width: 100vw;
@@ -54,8 +63,11 @@ h1 {
   padding: 13px 0;
 }
 
+.signin button{
+  border: none;
+}
 
-#sign-up-button a{
+/* #sign-up-button a{
   text-decoration: none;
   color:#00b7ff;
 
@@ -65,9 +77,9 @@ h1 {
   background-color: white;
   border-radius: 8px;
   margin-right: 1rem
-}
+} */
 
-#sign-in-button a{
+/* #sign-in-button a{
   text-decoration: none;
   color: white;
 }
@@ -75,32 +87,9 @@ h1 {
 #sign-in-button{
   background-color: #00b7ff;
   border-radius: 8px;
-}
+} */
 
-#homepage-bg h1{
-  color: white;
-  text-shadow: 3px 3px 3px rgba(8, 0, 0, 1);
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto
-}
-
-#homepage-bg-bg{
-  box-shadow: 0px 0px 9px 4px rgba(33, 235, 255, 0.93);
-  margin: 10px;
-}
-
-#homepage-bg{
-  width:100%;
-  height:60vh;
-  margin-top: 6rem;
-  opacity: 1;
-  color: white;   
-}
-
-#home-card{
-  width: 100%;
-  height: 60vh;
-}
-
+ /* Video styling  */
 #myVideo {
   width: 100vw;
   height: 100vh;
@@ -113,7 +102,7 @@ h1 {
   z-index: -1;
   }
 
-
+/* button styling blue glow */
 .btnlink {
   text-decoration: none;
   letter-spacing: 2px;
@@ -167,23 +156,51 @@ h1 {
   transition-delay: 0s;
 }
 
+/* footer styling */
 #footer {
-  position: absolute;
+  margin-top: 5rem;
   bottom: 0;
   width: 100%;
-background-color: #333333 ;
+  background-color: #212529 ;
+  color: #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:5rem;
 }
 
-#cta-list {
-  list-style: none; /* Remove default bullets */
+
+.card{
+  width: 20rem;
+  height: 28.1rem;
+  
+ 
+
+}
+#card-stack{
+  display: flex;
+  justify-content: space-evenly;
+}
+.search{
+  background-color: #212529;
+  border-radius: 10px;
+  color: #21EBFF;
+  border: none;
 }
 
-#cta-list li::before {
-  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-  color: #21EBFF; /* Change the color */
-  font-weight: bold; /* If you want it to be bold */
-  display: inline-block; /* Needed to add space between the bullet and the text */
-  width: 1em; /* Also needed for space (tweak if needed) */
-  margin-left: -1em; /* Also needed for space (tweak if needed) */
+
+#home-divider{
+  border-top: 8px solid #bbb;
+  border-radius: 5px;
+  margin-top: 4rem;
 }
+
+.su-card{
+  width: 100%;
+  margin: 5rem;
+  margin-bottom: 5rem;
+  height: 5rem;
+}
+
+
 
