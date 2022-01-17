@@ -23,7 +23,7 @@ a {
 /* welcome */
 
 #welcome{
-  width: 100%;
+  
   margin:3rem;
   color: #ecebeb;
   text-shadow: 3px 3px 4px rgba(0, 0, 0, 1);
@@ -203,4 +203,39 @@ a {
 }
 
 
+#high24{
+  color:green;
+}
+#low24{
+color:red;
+}
+#coinName{
+  color:#21EBFF;
+}
+#coinImage{
+  width:7rem;
+  height:7rem;
+  padding-top: 10px;
 
+}
+#coin-card{
+  box-shadow: 0 0 10px #21EBFF, 0 0 25px #21EBFF, 0 0 50px #21EBFF;
+  margin: 2rem;
+  height:30rem;
+  width: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+ 
+
+}
+.coin-cards{
+
+ height: 100vh;
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+}
