@@ -1,24 +1,31 @@
+
+
+<video id='myVideo' autoplay loop muted>
+    <source src="https://static.videezy.com/system/resources/previews/000/038/080/original/abstract_line1.mp4" type="video/mp4">
+</video>
+
 <div class="signin">
-<h3>Sign In</h3>
+    <h3>Log In</h3>
 
-<form action="/signin" method="POST">
-        <div class="uk-margin">
-        <div class="uk-inline" class="textbox">
-            <span class="uk-form-icon" uk-icon="icon: mail"></span>
-            <input class="uk-input" name="email" type="text" placeholder="Example@email.com">
-        </div>
+<form>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
-
-    <div class="uk-margin" class="textbox">
-        <div class="uk-inline">
-            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-            <input class="uk-input" name="password" type="password" placeholder="Password">
-        </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1">
     </div>
-    <a class="btnlink"class="signin-box" class="uk-button uk-button-default" type="submit">Sign In</a>
-
+        <button type="submit" class="btn btn-primary">Sign In</button>
 </form>
+
+<div id='welcome'>
+        <h5>Don't Have an Account? </h5> <a href="/signup">Sign Up Here!</a>
+</div>
+
 {{#if errorMessage}}
     <p>{{errorMessage}}</p>
 {{/if}}
+
 </div>
