@@ -88,7 +88,7 @@ router.post("/signin", async(req, res, next) => {
 router.get("/profile", isLoggedIn, (req, res, next) => {
     const {user} = req.session
 
-    Post.find({_author: user})
+    Post.find({_author: user}).sort({'createdAt': -1})
         .then(thePosts => {
             res.render("profile",{user, posts:thePosts})
         })
