@@ -91,7 +91,6 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
     Post.find({_author: user})
         .then(thePosts => {
             res.render("profile",{user, posts:thePosts})
-            console.log(thePosts)
         })
         .catch(error =>{
             next(error)

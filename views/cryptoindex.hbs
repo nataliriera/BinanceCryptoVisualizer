@@ -4,7 +4,7 @@
 
 <ul>
     <li>
-        <a id="BTC-pair" href="/cryptos?coin=BTCUSDT"> BTC </a>
+        <a id="BTC-pair" href="#"> BTC </a>
     </li>
 
     <li>
@@ -18,9 +18,12 @@
 </ul>
 
 <h3 id="pair"></h3>
-<canvas id="canvasElementID" width="800" height="600"></canvas>
+<canvas id="canvasElementID" width="1200" height="600" style="margin: auto;"></canvas>
+<div id="new"></div>
 
 <script src="/js/pingpoliCandlestickChart.js"></script>
+
+
 <script type = "text/javascript">
 
     const btc = document.getElementById("BTC-pair");
@@ -41,16 +44,23 @@
                 }
                 candlestickChart.addTechnicalIndicator( new MovingAverage( 5 , "#ffff00" , 2 ) );
                 candlestickChart.draw();
-                console.log("respuesta ok", json.length)
             } catch(err){
                 console.log("respuesta fallida", err)
             } 
         }
         getData()
     }
+
+
+    getGraph('BTCUSDT')
     
     btc.addEventListener("click", () => {
         getGraph('BTCUSDT')
+        const resp = axios.get('http://localhost:3000/getPosts')
+            .then(resp => {
+                console.log(resp.data)
+            })
+            .catch(err => console.log(err))
     });
 
     ada.addEventListener("click", () => {
