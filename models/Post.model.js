@@ -13,7 +13,6 @@ const postSchema = new Schema( {
     },
     images:{
         type:[String],
-        minlength:1
     },
     hashtags:String
 } , {
