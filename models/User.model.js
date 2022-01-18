@@ -23,7 +23,13 @@ const userSchema = new Schema(
 
     profile_picture:{
       type: String,
-      //default:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pikpng.com%2Fpngvi%2FiibRox_user-iconset-no-profile-picture-icon-circle-clipart%2F&psig=AOvVaw2mdXUT5r-4kq0wMKBNLyYV&ust=1641739777970000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNii0rizovUCFQAAAAAdAAAAABAJ"
+      default:"https://res.cloudinary.com/dzdovm4uz/image/upload/v1639617573/sample.jpg"
+  },
+  about_me:{
+    type: String,
+    min: [10, "Must be at least 10 characters"],
+    max: [200, "Must be 200 character max"],
+    default: ""
   },
 
   friends:{
@@ -41,5 +47,4 @@ const userSchema = new Schema(
 );
 
 const User = model("User", userSchema);
-
 module.exports = User;

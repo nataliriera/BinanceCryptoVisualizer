@@ -1,52 +1,131 @@
 
 {{> navbar}}
+
 <div id="profile">
+    <div class="card-body">
+        <source srcset="..." type="image/svg+xml">
+            <img class="img-fluid img-thumbnail" width="300" height="300" src="{{user.profile_picture}}">
+            <h1 class="card-title">{{user.username}}</h1>
+  </div>
+
+
+<div class="container">
+	<div class="row">
+		 <h2>Your Profile</h2>
+        
+        
+       <div class="col-md-7 ">
+
+<div class="panel panel-default">
+  <div class="panel-heading">  <h4 >User Profile</h4></div>
+   <div class="panel-body">
+       
+    <div class="box box-info">
+        
+            <div class="box-body">
+                     <div class="col-sm-6">
+                     <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
+                
+                <input id="profile-image-upload" class="hidden" type="file">
+<div style="color:#999;" >click here to change profile image</div>
+                <!--Upload Image Js And Css-->
+                     </div>
+              <br>
+                <!-- /input-group -->
+            </div>
+            <div class="col-sm-6">
+            <h4 style="color:#00b1b1;">{{user.username}}</h4></span>
+              <span><p>Developer</p></span>            
+            </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+    
+              
+
+<div class="col-sm-5 col-xs-6 title " >Location:</div><div class="col-sm-7" placeholder="Enter your Location"></div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 title " >Instagram</div><div class="col-sm-7" placeholder="Instagram Username"></div>
+      
+
+ 
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 title " >Website:</div><div class="col-sm-7" placeholder="http://..."></div>
+
+
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+       
+            
+    </div> 
+    </div>
+</div>  
+    <script>
+              $(function() {
+    $('#profile-image1').on('click', function() {
+        $('#profile-image-upload').click();
+    });
+});       
+              </script> 
+       
+       
+       
+       
+       
+       
+       
+       
+       
+   </div>
+</div>
+
+
+
+
+         
+
+{{!-- POSTS --}}
+
 <form action="/create" method="post" enctype="multipart/form-data">
 
-    <legend class="uk-legend">Share your thoughts!</legend>
-    <div class="uk-margin">
-        <div class="uk-form-width-large">
-            <textarea name="post" class="uk-textarea" id="comment-text" type="text" rows="5" placeholder="Write your post here..."></textarea>
-        </div>
-    </div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Share your thoughts!</label><br>
+        <textarea name="post" class="uk-textarea" id="comment-text" type="text" rows="5" placeholder="Write your post here..."></textarea>
+</div>
 
-    <div class="uk-margin">
-        <label class="uk-form-label" for="images">Images</label>
-        <div class="uk-form-width-large">
-            <input class="uk-input" type="file" name="images" multiple />
-        </div>
-    </div>
+<div class="mb-3">
+    <label for="formFile" class="form-label">Images</label>
+        <input class="form-control" type="file" id="formFile" name:"images" /multiple>
+</div>
 
-    <div class="uk-margin">
-        <label class="uk-form-label" for="hashtags">Hashtags</label>
-        <div class="uk-form-width-large">
-            <input class="uk-input" type="text" name="hashtags" placeholder="#BTC #Binance..."/>
-        </div>
-    </div>
-
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Hashtags</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="#BTC #Binance...">
+</div>
 
     <a class="btnlink" type="submit">Publish Post!</a>
 
 </form>
-
-<div class="container">
-    <h1>Posts</h1>
-    <div class="uk-child-width-1-1 uk-margin-medium-top uk-grid-match" uk-grid>
-        {{#each posts}}
-            <div class="uk-card uk-card-default">
-                <div class="uk-card-media-top">
-                    <img class="uk-align-center" src="{{images}}" alt="{{name}}">
-                </div>
-                <div class="uk-card-body">
-                    <p>{{post}}</p>
-                    <h3 class="uk-card-title">{{hashtags}}</h3>
-                </div>
-            </div>
-        {{/each}}
-    </div>
-</div>
-<div class="card-div">
-
 </div>
 
+
+
+<div class="card-posts ">
+{{#each posts}}
+<div class="card card bg-dark text-muted" style="width: 18rem;" id='coin-card'>
+  <img src="{{images}}" class="card-img-top" alt="{{name}}">
+  <div class="card-body">
+    <p class="card-text">{{post}}</p>
+    <h5 class="card-title">{{hashtags}}</h5>
+  </div>
+
+{{/each}}
+</div>
 </div>
