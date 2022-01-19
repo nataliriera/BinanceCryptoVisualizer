@@ -21,9 +21,14 @@ const userSchema = new Schema(
       unique:true
     },
 
+    ocupation:{
+      type: String,
+      required: true,
+    },
+
     profile_picture:{
       type: String,
-      default:"https://res.cloudinary.com/dzdovm4uz/image/upload/v1639617573/sample.jpg"
+      default:"https://res.cloudinary.com/dzdovm4uz/image/upload/v1642550134/profile_lknnfm.jpg"
   },
   about_me:{
     type: String,
