@@ -2,91 +2,95 @@
 {{> navbar}}
 
 <div id="profile">
-    <div class="card-body">
-        <source srcset="..." type="image/svg+xml">
-            <img class="img-fluid img-thumbnail" width="300" height="300" src="{{user.profile_picture}}">
-            <h1 class="card-title">{{user.username}}</h1>
-  </div>
 
+<video id='myVideo' autoplay loop muted>
+        <source src="https://static.videezy.com/system/resources/previews/000/038/037/original/Particle_background1.mp4" type="video/mp4">
+    </video>
+
+<h1>Your Profile</h1>
+{{!-- USER INFORMATION --}}
 
 <div class="container">
-	<div class="row">
-		<h2>Your Profile</h2>
-        <div class="col-md-7 ">
-            <div class="panel panel-default">
-                <div class="panel-heading">  
-                    <h4 >User Profile</h4>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 pt-5 ">
+            <div class="row z-depth-3">
+                <div class="col-sm-4 bg-info rounded-left">
+                    <div class="card-block text-center text-white">
+                        <source srcset="..." type="image/svg+xml">
+            <img class="img-fluid img-thumbnail fas fa-user-tie fa-7x mt-5" width="300" height="300" src="{{user.profile_picture}}">
+                        {{!-- <i class="fas fa-user-tie fa-7x mt-5"></i> --}}
+                        <h2 class="font-weight-bold mt-4">{{user.username}}</h2>
+                        <p>{{user.ocupation}}</p>
+                        <a class="far fa-edit fa-2x mb-4" href="/profilesettings"></a>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div class="box box-info">
-                        <div class="box-body">
-                            <div class="col-sm-6">
-                                <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">                 
-                                    <input id="profile-image-upload" class="hidden" type="file">
-                                    <div style="color:#999;" >click here to change profile image</div>
-            <!--Upload Image Js And Css-->
-                                </div>
-                                <br>
-            <!-- /input-group -->
-                            </div>
-                            <div class="col-sm-6">
-                                <h4 style="color:#00b1b1;">{{user.username}}</h4></span>
-                                <span><p>Developer</p></span>            
-                            </div>
-                            <div class="clearfix"></div>
-                            <hr style="margin:5px 0 5px 0;">
-                            <div class="col-sm-5 col-xs-6 title " >Location:</div>
-                            <div class="col-sm-7" placeholder="Enter your Location"></div>
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            <div class="col-sm-5 col-xs-6 title " >Instagram</div>
-                            <div class="col-sm-7" placeholder="Instagram Username"></div>
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            <div class="col-sm-5 col-xs-6 title " >Website:</div>
-                            <div class="col-sm-7" placeholder="http://..."></div>
-    <!-- /.box-body -->
+                <div class="col-sm-8 bg-#212529 rounded-right">
+                    <h3 class="mt-3 text-center">Information</h3>
+                    <hr class="badge-primary mt-0 w-100">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Email:</p>
+                            <h6 class="text-muted">{{user.email}}</h6>
                         </div>
-        <!-- /.box -->
-                    </div>     
-                </div> 
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">About Me:</p>
+                            <h6 class="text-muted">{{user.about_me}}</h6>
+                        </div>
+                    </div>
+                    <h4 class="mt-3 text-center">Interests</h4>
+                    <hr class="bg-primary">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Hashtags:</p>
+                            <h6 class="text-muted">{{user.hashtags}}</h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Favorites:</p>
+                            <h6 class="text-muted">{{user.favorites}}</h6>
+                        </div>
+                    </div>
+                    <hr  class="bg-primary">
+                    <ul class="list-unstyled d-flex justify-content-center mt-4">
+                        <li><a href="#"> <i class="fab fa-facebook-f px-3 h4 text-info"></i></a></li>
+                        <li><a href="#"> <i class="fab fa-instagram px-3 h4 text-info"></i></a></li>
+                        <li><a href="#"> <i class="fab fa-github px-3 h4 text-info"></i></a></li>
+                    </ul>
+                </div>
             </div>
-        </div>  
-        <script>
-            $(function() {
-                $('#profile-image1').on('click', function() {
-                $('#profile-image-upload').click();
-            });
-        });       
-        </script> 
+        </div>
     </div>
 </div>
 
+
+
+
 {{!-- POSTS --}}
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-10 mt-8 pt-5 ">
+            <div class="row z-depth-5">
+                <form action="/create" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h3>Share your thoughts!</h3></label><br>
+                <textarea class="form-control" placeholder="Write your post here..." id="floatingTextarea2" style="height: 100px"></textarea>
+        </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Images</label>
+            <input class="form-control" type="file" id="formFile" name:"images" /multiple>
+    </div>
 
-<form action="/create" method="post" enctype="multipart/form-data">
-
-<div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Share your thoughts!</label><br>
-        <textarea name="post" class="uk-textarea" id="comment-text" type="text" rows="5" placeholder="Write your post here..."></textarea>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Hashtags</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="#BTC #Binance...">
+    </div>
+        <button class="btnlink" type="submit">Publish Post!</button>
+    
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
-
-<div class="mb-3">
-    <label for="formFile" class="form-label">Images</label>
-        <input class="form-control" type="file" id="formFile" name:"images" /multiple>
-</div>
-
-<div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Hashtags</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="#BTC #Binance...">
-</div>
-
-    <button type="submit"><a class="btnlink" type="submit">Publish Post!</a></button>
-
-</form>
-</div>
-
-
 
 <div class="card-posts ">
     {{#each posts}}
