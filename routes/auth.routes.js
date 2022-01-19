@@ -120,7 +120,9 @@ router.post("/profile", uploader.single('profile_picture'), (req, res, next) =>{
 })
 
     // profile settings
-    router.get("/profilesettings", (req, res, next) =>{
-        res.render("profilesettings");
-    })
+router.get("/profilesettings", isLoggedIn, (req, res, next) =>{
+    const {user} = req.session
+    res.render("profilesettings", {user})
+})
+
 module.exports = router;
