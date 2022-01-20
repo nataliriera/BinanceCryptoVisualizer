@@ -306,3 +306,16 @@ input.hidden {
   justify-content: center;
   
 }
+
+.ul-charts {
+  list-style-type:none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.chart_title {
+  color:#21EBFF;
+  background-color: #212529 ;
+  display: flex;
+  justify-content: center;
+}
