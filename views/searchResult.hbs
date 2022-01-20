@@ -1,0 +1,38 @@
+{{> navbar}}
+
+<h3>Search results for: {{search}}</h3>
+<div class="container">
+    <div class="col" style="overflow:auto;">
+        <h4>Users:</h4>
+        <div class="card-posts ">
+            {{#each userResult}}
+            <div class="card card bg-dark text-muted" style="width: 18rem;" id='coin-card'>
+                <img src="{{profile_picture}}" class="card-img-top" alt="profilepic">
+                <div class="card-body">
+                    <h5 class="card-title">{{username}}</h5>
+                    <p class="card-text">{{email}}</p>
+                </div>
+                <form action="addFriend" method="POST">
+                    <input type="text" id="userEmail" name="userEmail" value={{email}} style="visibility: hidden;">
+                    <button type="submit" class="btn btn-link">Add friend</button>
+                </form>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="col" style="overflow:auto;">
+        <h4>Posts</h4>
+        <div class="card-posts ">
+            {{#each postResult}}
+            <div class="card card bg-dark text-muted" style="width: 18rem;" id='coin-card'>
+                <img src="{{images}}" class="card-img-top" alt="postImage">
+                <div class="card-body">
+                    <h5 class="card-title">{{_author.username}}</h5>
+                    <p class="card-text">{{post}}</p>
+                    <p class="card-text">{{createdAt}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

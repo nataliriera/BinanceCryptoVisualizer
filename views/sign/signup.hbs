@@ -1,0 +1,33 @@
+
+{{> navbar}}
+<video id='myVideo' autoplay loop muted>
+    <source src="https://static.videezy.com/system/resources/previews/000/038/080/original/abstract_line1.mp4" type="video/mp4">
+</video>
+
+<div class="signin">
+<h3>Signup</h3>
+
+
+<form action="/signup" method="POST">
+    <div class="mb-3">
+        <label for="exampleInputUsername1" class="form-label">Username</label>
+        <input name="username" type="text" placeholder="Username" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email</label>
+        <input name="email" type="text" placeholder="Example@email.com" class="form-control" id="exampleInputEmail1">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input name="password" type="password" placeholder="Password" class="form-control" id="exampleInputPassword1">
+    </div>
+        <button  type="submit" class="btn btn-primary" href='/profile'>Sign Up</button>
+</form>
+
+{{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+{{/if}}
+
+</div>

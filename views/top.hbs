@@ -1,0 +1,58 @@
+
+{{> navbar }}
+
+
+  <video id='myVideo' autoplay loop muted>
+        <source src="https://static.videezy.com/system/resources/previews/000/055/918/original/4K-240.mp4" type="video/mp4">
+    </video>
+
+
+<div class="coin-cards">
+<div class="card bg-dark text-muted" style="width: 20rem;">
+  <img id='coinImage' src="http://4.bp.blogspot.com/-TSVhgYQ8HOg/UE3Tlx-ACGI/AAAAAAAAARk/10TFo7s_sJk/s1600/Cute+Cat+Using+Laptop.jpg" class="card-img-top" alt="...">
+  <div class="card-body" style="width: 20rem;">
+    <h5  id='coinName' class="card-title">Coin Name</h5>
+    <p id="symbol" class="card-text">Coin Symbol</p>
+    <p id="currentPrice" class="card-text">Current Price USD: $</p>
+    <p id="marketCap" class="card-text">Market Cap:</p>
+    <p id="high24" class="card-text">24H High USD: $</p>
+    <p id="low24" class="card-text">24H Low USD: $</p>
+    <p id="perc24" class="card-text">24H Percentage Change: %</p>
+    <p id="lastUpdate" class="card-text">Last Updated:</p>
+  </div>
+  </div>
+</div>
+
+<script type = "text/javascript">
+    const apiURL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
+ const coin = document.querySelector('.coin-cards')
+fetch(apiURL)
+.then((res) => res.json())
+.then((data)=>{
+  const content = data
+  .map(
+    (coin) =>
+    
+ `
+    <div id='coin-card'class="card bg-dark text-muted" >
+    <img id='coinImage' src="${coin.image}" class="card-img-top" alt="${coin.name}">
+    <div class="card-body" >
+    <h5  id='coinName' class="card-title">${coin.name}</h5>
+    <p id="symbol" class="card-text">${coin.symbol}</p>
+    <p id="currentPrice" class="card-text">Current Price USD: $${coin.current_price}</p>
+    <p id="marketCap" class="card-text">Market Cap: ${coin.market_cap}</p>
+    <p id="high24" class="card-text">24H High USD: $${coin.high_24h}</p>
+    <p id="low24" class="card-text">24H Low USD: $${coin.low_24h}</p>
+    <p id="perc24" class="card-text">24H Percentage Change: %${coin.price_change_percentage_24h}</p>
+    <p id="lastUpdate" class="card-text">Last Updated: ${coin.last_updated}</p>
+   </div>
+       </div>
+       `
+     
+  )
+  .join("")
+  coin.innerHTML = content
+})
+</script>
+
+

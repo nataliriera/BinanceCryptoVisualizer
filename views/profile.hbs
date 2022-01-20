@@ -1,0 +1,107 @@
+
+{{> navbar}}
+
+<div id="profile">
+
+<video id='myVideo' autoplay loop muted>
+        <source src="https://static.videezy.com/system/resources/previews/000/038/037/original/Particle_background1.mp4" type="video/mp4">
+    </video>
+
+<h1>Your Profile</h1>
+{{!-- USER INFORMATION --}}
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 pt-5 ">
+            <div class="row z-depth-3">
+                <div class="col-sm-4 bg-info rounded-left">
+                    <div class="card-block text-center text-white">
+                        <source srcset="..." type="image/svg+xml">
+            <img class="img-fluid img-thumbnail fas fa-user-tie fa-7x mt-5" width="300" height="300" src="{{user.profile_picture}}">
+                        {{!-- <i class="fas fa-user-tie fa-7x mt-5"></i> --}}
+                        <h2 class="font-weight-bold mt-4">{{user.username}}</h2>
+                        <p>{{user.ocupation}}</p>
+                        <a class="far fa-edit fa-2x mb-4" href="/profilesettings"></a>
+                    </div>
+                </div>
+                <div class="col-sm-8 bg-#212529 rounded-right">
+                    <h3 class="mt-3 text-center">Information</h3>
+                    <hr class="badge-primary mt-0 w-100">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Email:</p>
+                            <h6 class="text-muted">{{user.email}}</h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">About Me:</p>
+                            <h6 class="text-muted">{{user.about_me}}</h6>
+                        </div>
+                    </div>
+                    <h4 class="mt-3 text-center">Interests</h4>
+                    <hr class="bg-primary">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Hashtags:</p>
+                            <h6 class="text-muted">{{user.hashtags}}</h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Favorites:</p>
+                            <h6 class="text-muted">{{user.favorites}}</h6>
+                        </div>
+                    </div>
+                    <hr  class="bg-primary">
+                    <ul class="list-unstyled d-flex justify-content-center mt-4">
+                        <li><a href="#"> <i class="fab fa-facebook-f px-3 h4 text-info"></i></a></li>
+                        <li><a href="#"> <i class="fab fa-instagram px-3 h4 text-info"></i></a></li>
+                        <li><a href="#"> <i class="fab fa-github px-3 h4 text-info"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{{!-- POSTS --}}
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-10 mt-8 pt-5 ">
+            <div class="row z-depth-5">
+                <form action="/create" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h3>Share your thoughts!</h3></label><br>
+                <textarea class="form-control" name="post" placeholder="Write your post here..." id="floatingTextarea2" style="height: 100px"></textarea>
+        </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Images</label>
+            <input class="form-control" type="file" id="formFile" name="images" >
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Hashtags</label>
+            <input type="text" name="hashtags" class="form-control" id="exampleFormControlInput1" placeholder="#BTC #Binance...">
+    </div>
+        <button class="btnlink" type="submit">Publish Post!</button>
+    
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="card-posts ">
+    {{#each posts}}
+    <div class="card card bg-dark text-muted" style="width: 18rem;" id='coin-card'>
+        
+        <img src={{images}}  class="card-img-top" alt="">
+        
+        <div class="card-body">
+            <p class="card-text">{{post}}</p>
+            <h5 class="card-title">{{hashtags}}</h5>
+        </div>
+    </div>
+    {{/each}}
+</div>
