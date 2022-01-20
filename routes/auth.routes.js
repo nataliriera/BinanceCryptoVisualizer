@@ -5,6 +5,7 @@ const bcryptjs = require("bcryptjs");
 const {isLoggedOut,isLoggedIn} = require("../utils/auth");
 const mongoose = require('mongoose');
 const uploader = require('../helpers/multer');
+const { redirect } = require("express/lib/response");
 
 // --------------------- Sign Up ---------------------
 router.get("/signup", (req, res, next) =>{
@@ -87,9 +88,9 @@ router.post("/signin", async(req, res, next) => {
 // --------------------- Profile ---------------------
 router.get("/profile", isLoggedIn, (req, res, next) => {
     const {user} = req.session
-
     Post.find({_author: user}).sort({'createdAt': -1})
         .then(thePosts => {
+            console.log(user)
             res.render("profile",{user, posts:thePosts})
         })
         .catch(error =>{
@@ -102,8 +103,9 @@ router.get("/logout",  (req, res, next) => {
     res.redirect("/")
     });
 
-router.post("/profile", uploader.single('profile_picture'), (req, res, next) =>{
-    const {user} = req.session
+// PROFILE SETTINGS
+router.post("/profilesettings", uploader.single('profile_picture'), (req, res, next) =>{
+    let {user} = req.session
     let data = {...req.body}
     if(req.file){
         data.profile_picture = req.file.path
@@ -112,6 +114,7 @@ router.post("/profile", uploader.single('profile_picture'), (req, res, next) =>{
         new:true
     })
     .then(thePosts => {
+        req.session.user = thePosts
         res.redirect("/profile")
     })
     .catch(error =>{
