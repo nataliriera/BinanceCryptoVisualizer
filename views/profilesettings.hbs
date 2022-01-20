@@ -1,4 +1,7 @@
 
+{{> navbar}}
+
+
 <div id="profile">
 
 <video id='myVideo' autoplay loop muted>
@@ -6,9 +9,12 @@
     </video>
 
 
-{{> navbar}}
 
 
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5 mt-5 pt-5 ">
+            <div class="row z-depth-3">
 <div class="uk-flex uk-flex-center" class="settings">
     
     <div class="uk-card uk-card-default uk-card-large uk-card-body">
@@ -16,12 +22,12 @@
         <hr class="badge-primary mt-0 w-100">
 
         
-            <form class="uk-form-horizontal uk-margin-large">
+            <form class="uk-form-horizontal uk-margin-large" action="/profilesettings" method="POST" enctype="multipart/form-data">
 
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-horizontal-text">About me</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" id="form-horizontal-text" type="text" >
+                <textarea class="form-control" name="about_me" placeholder="Tell us more about you!" id="floatingTextarea2" style="height: 100px"></textarea>
                         </div> 
 
                 <div class="uk-margin">
@@ -56,6 +62,8 @@
             </p>
     </div>    
 </div>
-
 </div>
-    
+    </div>
+    </div>
+    </div>
+    </div>

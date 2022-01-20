@@ -72,16 +72,16 @@
                 <form action="/create" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><h3>Share your thoughts!</h3></label><br>
-                <textarea class="form-control" placeholder="Write your post here..." id="floatingTextarea2" style="height: 100px"></textarea>
+                <textarea class="form-control" name="post" placeholder="Write your post here..." id="floatingTextarea2" style="height: 100px"></textarea>
         </div>
     <div class="mb-3">
         <label for="formFile" class="form-label">Images</label>
-            <input class="form-control" type="file" id="formFile" name:"images" /multiple>
+            <input class="form-control" type="file" id="formFile" name="images" >
     </div>
 
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Hashtags</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="#BTC #Binance...">
+            <input type="text" name="hashtags" class="form-control" id="exampleFormControlInput1" placeholder="#BTC #Binance...">
     </div>
         <button class="btnlink" type="submit">Publish Post!</button>
     
@@ -95,7 +95,9 @@
 <div class="card-posts ">
     {{#each posts}}
     <div class="card card bg-dark text-muted" style="width: 18rem;" id='coin-card'>
-        <img src="{{images}}" class="card-img-top" alt="{{name}}">
+        
+        <img src={{images}}  class="card-img-top" alt="">
+        
         <div class="card-body">
             <p class="card-text">{{post}}</p>
             <h5 class="card-title">{{hashtags}}</h5>

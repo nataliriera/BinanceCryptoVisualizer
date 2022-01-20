@@ -6,21 +6,24 @@ router.get("/create",  (req, res, next) => {
     res.redirect("/profile")
     });
 
-router.post("/create",Upload.array("images"), (req, res, next) => {
+router.post("/create",Upload.single("images"), (req, res, next) => {
 
     const _author = req.session.user._id
     console.log(_author)
     const {post,hashtags, ...rest}= req.body
-
-    const images = req.files.map(file=> file.path)
-
-    Post.create( {
+    const data = {
         _author,
         post,
-        images,
         hashtags
-    })
-    .then(post=> res.redirect("/profile") )
+    }
+    if(req.file){
+        const images = req.file.path
+        data.images = images
+    }
+
+    Post.create(data)
+    .then(post=> {
+        res.redirect("/profile")} )
     .catch(error=>next(error))
 });
 
