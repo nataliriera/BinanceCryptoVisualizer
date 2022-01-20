@@ -1,7 +1,13 @@
+
 {{> navbar}}
 
-<h3>Search results for: {{search}}</h3>
-<div class="container">
+<div id="profile">
+<video id='myVideo' autoplay loop muted>
+        <source src="https://static.videezy.com/system/resources/previews/000/038/037/original/Particle_background1.mp4" type="video/mp4">
+    </video>
+
+<h1>Search results for: {{search}}</h1>
+<div class="container coin-cards">
     <div class="col" style="overflow:auto;">
         <h4>Users:</h4>
         <div class="card-posts ">
@@ -35,4 +41,5 @@
             {{/each}}
         </div>
     </div>
+</div>
 </div>
