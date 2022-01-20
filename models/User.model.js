@@ -23,7 +23,6 @@ const userSchema = new Schema(
 
     ocupation:{
       type: String,
-      required: true,
     },
 
     profile_picture:{
